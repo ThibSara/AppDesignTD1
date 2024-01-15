@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import HomePage from './HomePage';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Find your Suitable</Text>
-      <StatusBar style="auto" />
-    </View>
+    <HomePage></HomePage>
   );
 }
 
