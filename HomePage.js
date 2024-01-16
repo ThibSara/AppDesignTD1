@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {useFonts} from 'expo-font';
 import { useCallback } from 'react';
 import Card from './card';
-
+import Apple from './assets/images/Apple.png'; 
+import { cardData } from './data';
 
 export default function HomePage() {
-
     const [fontsLoaded] = useFonts({
         regular: require('./assets/fonts/regular.ttf'),
         r_bold : require('./assets/fonts/bold.ttf'),
@@ -26,28 +26,54 @@ export default function HomePage() {
     const title = 'Find your suitable \n watch now';
 
     return (
-      <View style={styles.title_container}>
+      <View style={styles.home}>
         <Text style={styles.textStyle}>{title}</Text>
-        <Text style = {styles.labelStyle}>Smart Watch</Text>
-        <Card/>
+        <Text style = {styles.labelStyle}>Smart Watch</Text>  
+        <View style = {styles.card_container}>   
+      {cardData.map((data, index) => (
+        <Card
+          key={index}
+          title={data.title}
+          serialNumber={data.serialNumber}
+          price={data.price}
+          imageSource={data.imageSource}
+        />
+      ))}
+      </View>
         <StatusBar style="auto" />
       </View>
     );
   }
   
   const styles = StyleSheet.create({
-    title_container: {
+    home: {
       flex: 1,
-      backgroundColor: '#fbfbff',
+      display:'flex',
+      flexDirection:'column',
+      backgroundColor: '#FCFCFF',
       alignItems: 'flex-start',
       justifyContent: 'center',
+      marginHorizontal:20,
+      marginTop:20,
+      gap:20,
     },
     textStyle: {
         fontFamily: 'r_bold',
-        fontSize:24,
+        fontSize:36,
+        color:'#1b153d',
     },
     labelStyle : {
         color : '#5b40ff',
         fontFamily:'r_semibold',
+        fontSize:16,
+        lineHeight:24,
+    },
+    card_container:{
+        display:'flex',
+        flexDirection:'row',
+        gap:15,
+        flexWrap:'wrap',
+        justifyContent:'space-between',
+
     }
   });
