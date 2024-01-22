@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {useFonts} from 'expo-font';
 import { useCallback } from 'react';
@@ -6,7 +6,10 @@ import Card from './card';
 import { cardData } from './data';
 import WatchPage from './WatchPage';
 
-export default function HomePage() {
+export default function HomePage({navigation}) {
+  const handleCardPress = (title) => {
+    navigation.navigate('WatchPage', { title });
+  };
     const [fontsLoaded] = useFonts({
         regular: require('./assets/fonts/regular.ttf'),
         r_bold : require('./assets/fonts/bold.ttf'),
@@ -31,14 +34,15 @@ export default function HomePage() {
         <Text style = {styles.labelStyle}>Smart Watch</Text>  
         <View style = {styles.card_container}>   
       {cardData.map((data, index) => (
+        <TouchableOpacity onPress={() => handleCardPress(data.title)}>
         <Card
           key={index}
           title={data.title}
           serialNumber={data.serialNumber}
           price={data.price}
           imageSource={data.imageSource}
-          onPress={() => navigation.navigate(WatchPage)}
         />
+        </TouchableOpacity>
       ))}
       </View>
         <StatusBar style="auto" />
@@ -51,7 +55,7 @@ export default function HomePage() {
       flex: 1,
       display:'flex',
       flexDirection:'column',
-      backgroundColor: '#FCFCFF',
+      backgroundColor: '#fff',
       alignItems: 'flex-start',
       justifyContent: 'center',
       marginHorizontal:20,

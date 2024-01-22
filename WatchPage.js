@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function WatchPage() {
+const navigation = useNavigation();
+const handleArrowPress = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.image_container}>
+      <TouchableOpacity onPress={handleArrowPress}>
         <Image source={require('./assets/images/Arrow.png')} style={styles.arrowImage} />
+        </TouchableOpacity>
         <Image source={require('./assets/images/Apple.png')} style={styles.watchImage} />
       </View>
         <View style={styles.color_container}>
