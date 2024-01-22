@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function WatchPage() {
+export default function WatchPage({title,price,imageSource}) {
 const navigation = useNavigation();
 const handleArrowPress = () => {
     navigation.goBack();
@@ -14,16 +14,16 @@ const handleArrowPress = () => {
       <TouchableOpacity onPress={handleArrowPress}>
         <Image source={require('./assets/images/Arrow.png')} style={styles.arrowImage} />
         </TouchableOpacity>
-        <Image source={require('./assets/images/Apple.png')} style={styles.watchImage} />
+        <Image source={imageSource} style={styles.watchImage} />
       </View>
         <View style={styles.color_container}>
       <View style={styles.description_container}>
         <View style={styles.headline_container}>
           <View style={styles.title_container}>
-            <Text style={styles.titleStyle}>Apple Watch Series 7</Text>
+            <Text style={styles.titleStyle}>{title}</Text>
             <Text style={styles.subtitleStyle}>( With solo loop )</Text>
           </View>
-          <Text style={styles.priceStyle}>$799</Text>
+          <Text style={styles.priceStyle}>{price}</Text>
         </View>
         <Text style= {styles.description}>The aluminium case is lightweight and made from 100 percent recycled aerospace grade alloy.</Text>
         <View style={styles.button_container}>

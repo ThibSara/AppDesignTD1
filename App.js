@@ -23,9 +23,13 @@ export default function App() {
             <HomePage {...props} title="homepage" cardData={cardData} navigation={props.navigation} />
           )}
         </Stack.Screen>
-        <Stack.Screen name="WatchPage" options={{
-            headerShown: false,
-          }} component={WatchPage} />
+        <Stack.Screen
+          name="WatchPage"
+              options={{ headerShown: false }}>
+            {(props) => (
+            <WatchPage {...props} title={props.route.params.title} price ={props.route.params.price} imageSource={props.route.params.imageSource} />
+      )}
+</Stack.Screen>
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

@@ -7,8 +7,8 @@ import { cardData } from './data';
 import WatchPage from './WatchPage';
 
 export default function HomePage({navigation}) {
-  const handleCardPress = (title) => {
-    navigation.navigate('WatchPage', { title });
+  const handleCardPress = (title,price,imageSource) => {
+    navigation.navigate('WatchPage', { title, price, imageSource });
   };
     const [fontsLoaded] = useFonts({
         regular: require('./assets/fonts/regular.ttf'),
@@ -34,7 +34,7 @@ export default function HomePage({navigation}) {
         <Text style = {styles.labelStyle}>Smart Watch</Text>  
         <View style = {styles.card_container}>   
       {cardData.map((data, index) => (
-        <TouchableOpacity onPress={() => handleCardPress(data.title)}>
+        <TouchableOpacity onPress={() => handleCardPress(data.title,data.price,data.imageSource)}>
         <Card
           key={index}
           title={data.title}
