@@ -30,6 +30,7 @@ export default function HomePage({navigation}) {
 
     return (
       <View style={styles.home}>
+        <View style={styles.frame}>
         <Text style={styles.textStyle}>{title}</Text>
         <Text style = {styles.labelStyle}>Smart Watch</Text>  
         <View style = {styles.card_container}>   
@@ -41,11 +42,13 @@ export default function HomePage({navigation}) {
           serialNumber={data.serialNumber}
           price={data.price}
           imageSource={data.imageSource}
+          color = {data.color}
         />
         </TouchableOpacity>
       ))}
       </View>
         <StatusBar style="auto" />
+        </View>
       </View>
     );
   }
@@ -58,9 +61,11 @@ export default function HomePage({navigation}) {
       backgroundColor: '#fff',
       alignItems: 'flex-start',
       justifyContent: 'center',
+    },
+    frame:{
+      gap:20,
       marginHorizontal:20,
       marginTop:20,
-      gap:20,
     },
     textStyle: {
         fontFamily: 'r_bold',

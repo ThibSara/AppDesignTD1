@@ -3,11 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image} from 'react-native';
 
 
-export default function Card({ title, serialNumber, price, imageSource}) {
+export default function Card({ title, serialNumber, price, imageSource,color}) {
     return (
         <View style={styles.container}>
             <View style = {styles.frame_image}>
-            <Image source={imageSource} style={styles.image} />
+            <Image source={imageSource} style={[styles.image, {backgroundColor:color}]} />
             </View>
             <View style = {styles.frame_text}>
             <View style = {styles.frame_title}>
