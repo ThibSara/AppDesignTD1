@@ -3,8 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import {useFonts} from 'expo-font';
 import { useCallback } from 'react';
 import Card from './card';
-import Apple from './assets/images/Apple.png'; 
 import { cardData } from './data';
+import WatchPage from './WatchPage';
 
 export default function HomePage() {
     const [fontsLoaded] = useFonts({
@@ -37,6 +37,7 @@ export default function HomePage() {
           serialNumber={data.serialNumber}
           price={data.price}
           imageSource={data.imageSource}
+          onPress={() => navigation.navigate(WatchPage)}
         />
       ))}
       </View>
