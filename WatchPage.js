@@ -1,8 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useCallback } from 'react';
+import {useFonts} from 'expo-font';
 
 export default function WatchPage({title,price,imageSource}) {
+
+const [fontsLoaded] = useFonts({
+    regular: require('./assets/fonts/regular.ttf'),
+    r_bold : require('./assets/fonts/bold.ttf'),
+    r_semibold: require('./assets/fonts/semiBold.ttf'),
+});
+
+const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
 const navigation = useNavigation();
 const handleArrowPress = () => {
     navigation.goBack();
@@ -27,7 +46,7 @@ const handleArrowPress = () => {
         </View>
         <Text style= {styles.description}>The aluminium case is lightweight and made from 100 percent recycled aerospace grade alloy.</Text>
         <View style={styles.button_container}>
-        <Text style={{color: '#fff'}}>Add to cart</Text>
+        <Text style={{color: '#fff', fontFamily:'r_bold'}}>Add to cart</Text>
     </View>
     </View>
     </View>
@@ -66,7 +85,7 @@ const styles = StyleSheet.create({
     height : 311,
   },
   headline_container: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'row',
     gap: 70,
@@ -80,18 +99,23 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 24,
     color: '#000000',
+    fontFamily: 'r_bold',
   },
   subtitleStyle: {
     fontSize: 12,
     color: '#9095A6',
+    fontFamily: 'regular',
+
   },
   priceStyle: {
     fontSize: 24,
     color: '#5b40ff',
+    fontFamily: 'r_bold',
   },
   description: {
     color : '#9095A6',
     fontSize : 14, 
+    fontFamily: 'regular',
   },
   description_container: {
     alignItems: 'center',

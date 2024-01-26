@@ -7,6 +7,7 @@ import { cardData } from './data';
 import WatchPage from './WatchPage';
 
 export default function HomePage({navigation}) {
+  
   const handleCardPress = (title,price,imageSource) => {
     navigation.navigate('WatchPage', { title, price, imageSource });
   };
